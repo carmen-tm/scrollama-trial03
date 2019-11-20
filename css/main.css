@@ -1,3 +1,19 @@
+/* Common resets */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+#intro {
+	margin: 2rem 2rem 6rem;
+}
+
+#outro {
+	margin: 6rem 2rem 2rem;
+}
+
+/* Paret container */
 #scroll {
 	position: relative;
 	display: -webkit-box;
@@ -11,11 +27,12 @@
 	-ms-flex: 1;
 	flex: 1;
 }
-.scroll__text {
-	position: relative;
-	padding: 0 1rem;
-	max-width: 20rem;
+
+/* GRAPHIC container */
+.scroll__graphic {
+	/* background-color: pink; */
 }
+
 .chart {
 	position: -webkit-sticky;
 	position: sticky;
@@ -24,36 +41,53 @@
 	-webkit-transform: translate3d(0, 0, 0);
 	-moz-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
-	background-color: #8a8a8a;
 	z-index: 0;
+
+	/* background-color: #8a8a8a; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.chart p {
-	text-align: center;
+.chart .chart-text {
 	padding: 1rem;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-moz-transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	font-size: 8rem;
+
+	font-size: 2rem;
+	text-align: center;
 	font-weight: 900;
-	color: #fff;
+	color: grey;
 }
+
+/* STEPS TEXT styles */
+/* Basic left-aligned approach for the text steps */
+.scroll__text {
+	position: relative;
+	padding: 0 1rem;
+	max-width: 20rem;
+
+	text-align: center;
+	/* background-color: lightblue; */
+}
+
 .step {
 	margin: 0 auto 2rem auto;
-	background-color: #3b3b3b;
-	color: #fff;
-}
-.step:last-child {
-	margin-bottom: 0;
+	color: gray;
+	/* background-color: lightgrey; */
+	/* color: #fff; */
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .step.is-active {
-	background-color: goldenrod;
+	background-color: white;
 	color: #3b3b3b;
 }
 .step p {
 	text-align: center;
 	padding: 1rem;
 	font-size: 1.5rem;
+}
+.step:last-child {
+	margin-bottom: 0;
 }
