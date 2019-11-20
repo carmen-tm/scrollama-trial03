@@ -45,16 +45,22 @@
 
 	/* background-color: #8a8a8a; */
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-.chart .chart-text {
+.chart .chart-title {
 	padding: 1rem;
 
 	font-size: 2rem;
 	text-align: center;
 	font-weight: 900;
 	color: grey;
+}
+.chart .chart-content {
+	padding: 1rem;
+
+	color: crimson;
 }
 
 /* STEPS TEXT styles */

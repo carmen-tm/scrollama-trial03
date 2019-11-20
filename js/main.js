@@ -40,7 +40,24 @@ function handleStepEnter(response) {
 	});
 
 	// update graphic based on step
-	chart.select('.chart-text').text(`mapa info ${response.index + 1}`);
+	const chartTitle = chart.select('.chart-title');
+	let chartContent = chart.select('.chart-content');
+
+	chartTitle.text(`mapa info ${response.index + 1}`);
+
+	// test with graphic stuff
+	if (response.index === 0) {
+		chartContent.select('p').text('soy el primer step');
+	}
+	if (response.index === 1) {
+		chartContent.select('p').text('soy el segundo step');
+	}
+	if (response.index === 2) {
+		chartContent.select('p').text('soy el tercer step');
+	}
+	if (response.index === 3) {
+		chartContent.select('p').text('soy el cuarto step');
+	}
 }
 
 function setupStickyfill() {
