@@ -123,6 +123,8 @@ var dataset = [
 	25
 ];
 
+var dataset02 = [15, 30, 50, 14, 2];
+
 var xScale = d3
 	.scaleBand()
 	.domain(d3.range(dataset.length))
@@ -183,10 +185,12 @@ svg
 	.on('mouseout', function() {
 		//Remove the tooltip
 		d3.select('#tooltip').remove();
+	})
+	.on('click', function() {
+		sortBars();
 	});
-// .on('click', function() {
-// 	sortBars();
-// });
+
+// Update dataset
 
 //Define sort order flag
 var sortOrder = false;
