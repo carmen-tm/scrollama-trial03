@@ -97,3 +97,8 @@
 .step:last-child {
 	margin-bottom: 0;
 }
+
+/* CHART STYLES */
+rect:hover {
+	fill: orange;
+}
