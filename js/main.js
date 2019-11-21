@@ -55,10 +55,7 @@ function handleStepEnter(response) {
 	}
 	if (response.index === 1) {
 		chartContent.select('p').text('soy el segundo step');
-		// sortBars();
-
-		let dataset = dataset02;
-		paintBars(dataset02);
+		sortBars();
 	}
 	if (response.index === 2) {
 		chartContent.select('p').text('soy el tercer step');
@@ -103,7 +100,7 @@ init();
 var w = 600;
 var h = 250;
 
-var dataset01 = [
+var dataset = [
 	5,
 	10,
 	13,
@@ -128,8 +125,6 @@ var dataset01 = [
 
 var dataset02 = [15, 30, 50, 14, 2];
 
-let dataset = dataset01;
-
 var xScale = d3
 	.scaleBand()
 	.domain(d3.range(dataset.length))
@@ -150,56 +145,50 @@ var svg = d3
 	.attr('height', h);
 
 //Create bars
-function paintBars(data) {
-	svg
-		.selectAll('rect')
-		.data(data)
-		// .enter()
-		// .append('rect')
-		.join('rect')
-		.transition()
-		.duration(1000)
-		.attr('x', function(d, i) {
-			return xScale(i);
-		})
-		.attr('y', function(d) {
-			return h - yScale(d);
-		})
-		.attr('width', xScale.bandwidth())
-		.attr('height', function(d) {
-			return yScale(d);
-		})
-		.attr('fill', function(d) {
-			return 'rgb(0, 0, ' + Math.round(d * 10) + ')';
-		})
-		.on('mouseover', function(d) {
-			//Get this bar's x/y values, then augment for the tooltip
-			var xPosition =
-				parseFloat(d3.select(this).attr('x')) + xScale.bandwidth() / 2;
-			var yPosition = parseFloat(d3.select(this).attr('y')) + 14;
+svg
+	.selectAll('rect')
+	.data(dataset)
+	.enter()
+	.append('rect')
+	.attr('x', function(d, i) {
+		return xScale(i);
+	})
+	.attr('y', function(d) {
+		return h - yScale(d);
+	})
+	.attr('width', xScale.bandwidth())
+	.attr('height', function(d) {
+		return yScale(d);
+	})
+	.attr('fill', function(d) {
+		return 'rgb(0, 0, ' + Math.round(d * 10) + ')';
+	})
+	.on('mouseover', function(d) {
+		//Get this bar's x/y values, then augment for the tooltip
+		var xPosition =
+			parseFloat(d3.select(this).attr('x')) + xScale.bandwidth() / 2;
+		var yPosition = parseFloat(d3.select(this).attr('y')) + 14;
 
-			//Create the tooltip label
-			svg
-				.append('text')
-				.attr('id', 'tooltip')
-				.attr('x', xPosition)
-				.attr('y', yPosition)
-				.attr('text-anchor', 'middle')
-				.attr('font-family', 'sans-serif')
-				.attr('font-size', '11px')
-				.attr('font-weight', 'bold')
-				.attr('fill', 'black')
-				.text(d);
-		})
-		.on('mouseout', function() {
-			//Remove the tooltip
-			d3.select('#tooltip').remove();
-		})
-		.on('click', function() {
-			sortBars();
-		});
-}
-paintBars(dataset01);
+		//Create the tooltip label
+		svg
+			.append('text')
+			.attr('id', 'tooltip')
+			.attr('x', xPosition)
+			.attr('y', yPosition)
+			.attr('text-anchor', 'middle')
+			.attr('font-family', 'sans-serif')
+			.attr('font-size', '11px')
+			.attr('font-weight', 'bold')
+			.attr('fill', 'black')
+			.text(d);
+	})
+	.on('mouseout', function() {
+		//Remove the tooltip
+		d3.select('#tooltip').remove();
+	})
+	.on('click', function() {
+		sortBars();
+	});
 
 // Update dataset
 
